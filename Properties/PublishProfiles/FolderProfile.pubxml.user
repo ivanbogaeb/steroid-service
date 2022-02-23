@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\N0XT\source\repos\steroid-service\steroid-service\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2022-02-23T03:23:21.6642843Z;True|2022-02-13T16:23:12.0841638-03:00;True|2022-01-09T16:48:53.4023678-03:00;True|2022-01-09T16:48:32.8373067-03:00;False|2022-01-09T16:48:21.7442403-03:00;True|2022-01-09T16:39:58.6462200-03:00;True|2022-01-09T16:34:22.1904473-03:00;True|2022-01-09T16:29:00.3140040-03:00;True|2022-01-09T16:27:40.8631071-03:00;True|2022-01-09T16:27:12.4132357-03:00;True|2022-01-09T16:25:01.1314684-03:00;False|2022-01-09T16:24:39.4444595-03:00;True|2022-01-09T16:20:24.5681144-03:00;True|2022-01-09T16:19:36.4027148-03:00;True|2022-01-09T16:19:18.7027370-03:00;True|2022-01-09T16:18:14.2703786-03:00;</History>
+  </PropertyGroup>
+</Project>
