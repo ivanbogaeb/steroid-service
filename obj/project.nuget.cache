@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eFtKsDsz3jY0idOJmKIEPbX9bDeCPucn38AqPU/bsL+/kNzZE0x3vyVpZXnCEG8pk6b5FZQScUeFlakPV/FuBw==",
+  "dgSpecHash": "ETMStNfW4EJGg0DcGdNwz45olJos2fGiD5ikBPcFOqHGZNf/rhQsk2it3/gdfPXKxE/ylEVdsvVZ6Wg/67/S3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\N0XT\\source\\repos\\steroid-service\\steroid-service\\steroid-service.csproj",
+  "projectFilePath": "C:\\Users\\N0XT\\Desktop\\Ivan Repository\\steroid-service\\steroid-service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\N0XT\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\N0XT\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

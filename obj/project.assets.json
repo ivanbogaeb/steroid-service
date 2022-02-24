@@ -1335,11 +1335,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\N0XT\\source\\repos\\steroid-service\\steroid-service\\steroid-service.csproj",
+      "projectUniqueName": "C:\\Users\\N0XT\\Desktop\\Ivan Repository\\steroid-service\\steroid-service.csproj",
       "projectName": "steroid-service",
-      "projectPath": "C:\\Users\\N0XT\\source\\repos\\steroid-service\\steroid-service\\steroid-service.csproj",
+      "projectPath": "C:\\Users\\N0XT\\Desktop\\Ivan Repository\\steroid-service\\steroid-service.csproj",
       "packagesPath": "C:\\Users\\N0XT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\N0XT\\source\\repos\\steroid-service\\steroid-service\\obj\\",
+      "outputPath": "C:\\Users\\N0XT\\Desktop\\Ivan Repository\\steroid-service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\N0XT\\AppData\\Roaming\\NuGet\\NuGet.Config",
