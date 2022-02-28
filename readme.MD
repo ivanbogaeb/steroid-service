@@ -13,7 +13,7 @@ Steroid service is the service that provides real time data metrics from your PC
 
 #### How to run
 ```powershell
-    python ./steroid-services.py
+    python ./steroid-service.py
 ```
 
 #### References
