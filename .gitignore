@@ -1,4 +1,9 @@
 __pycache__
 build
 dist
-server.spec
+test.py
+NVENC.dll
+libmfxsw32.dll
+libmfxsw64.dll
+GPU.dll
+System.Diagnostics.PerformanceCounter.dll

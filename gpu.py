@@ -2,17 +2,14 @@ from flask import jsonify
 import types
 
 def usage(Hardware):
-    if len(Hardware) < 2:
+    if Hardware is None:
+        return {
+            "error": "Not able to fetch GPU sensors."
+        }
+    elif len(Hardware) > 1:
         response = []
         for gpu in Hardware:
             gpu.Update()
-
-            for sensor in gpu.Sensors:
-                print(sensor.SensorType)
-                print(sensor.Identifier)
-            gpuData = types.SimpleNamespace()
-            gpuData.name = gpu.Name,
-
             response.append(
                 {
                     "name": gpu.Name,
@@ -42,6 +39,11 @@ def usage(Hardware):
             return jsonify(response)
     
     else:
+        Hardware[0].Update()
+        for sensor in Hardware[0].Sensors:
+                print(sensor.SensorType, " - ", sensor.Identifier)
+        # gpuData = types.SimpleNamespace()
+        # gpuData.name = Hardware[0].Name,
         return {
             "name": Hardware[0].Name,
             "core": {
@@ -65,6 +67,6 @@ def usage(Hardware):
             "video": {
                  "usage": Hardware[0].Sensors[6].Value,
             }, 
-         }
+        }
         
     

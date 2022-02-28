@@ -7,16 +7,19 @@ import cpu as cpuModule
 import ram as ramModule
 import gpu as gpuModule
 
-OpenHardwareMonitorLib = r""+os.getcwd()+"/OpenHardwareMonitorLib.dll"
-MonoPosixNETStandard =  r""+os.getcwd()+"C:/Users/N0XT/Desktop/steroid-service/Mono.Posix.NETStandard.dll"
+# OpenHardwareMonitorLib = r""+os.getcwd()+"/OpenHardwareMonitorLib.dll"
+LibreHardwareMonitorLib = r""+os.getcwd()+"/LibreHardwareMonitorLib.dll"
+MonoPosixNETStandard =  r""+os.getcwd()+"/Mono.Posix.NETStandard.dll"
 
-sys.path.append(OpenHardwareMonitorLib)
+#sys.path.append(OpenHardwareMonitorLib)
+sys.path.append(LibreHardwareMonitorLib)
 sys.path.append(MonoPosixNETStandard)
 
-clr.AddReference('OpenHardwareMonitorLib')
+#clr.AddReference('OpenHardwareMonitorLib')
+clr.AddReference('LibreHardwareMonitorLib')
 clr.AddReference('Mono.Posix.NETStandard')
 
-from OpenHardwareMonitor import Hardware
+from LibreHardwareMonitor import Hardware
 
 computer = Hardware.Computer()
 computer.MainboardEnabled = True
