@@ -17,7 +17,7 @@ Steroid service is the service that provides real time data metrics from your PC
 ```
 
 #### References
-Steroid service works as an internal web API hosted your **localhost** port **7666**, waiting for a **GET method** on these endpoints:
+Steroid service works as an internal web API hosted on your **localhost** port **7666**, waiting for a **GET method** on these endpoints:
 
 |Endpoint|Query|Return format|
 |---|---|---|
