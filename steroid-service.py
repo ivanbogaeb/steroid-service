@@ -7,19 +7,16 @@ import cpu as cpuModule
 import ram as ramModule
 import gpu as gpuModule
 
-# OpenHardwareMonitorLib = r""+os.getcwd()+"/OpenHardwareMonitorLib.dll"
-LibreHardwareMonitorLib = r""+os.getcwd()+"/LibreHardwareMonitorLib.dll"
+OpenHardwareMonitorLib = r""+os.getcwd()+"/OpenHardwareMonitorLib.dll"
 MonoPosixNETStandard =  r""+os.getcwd()+"/Mono.Posix.NETStandard.dll"
 
-#sys.path.append(OpenHardwareMonitorLib)
-sys.path.append(LibreHardwareMonitorLib)
+sys.path.append(OpenHardwareMonitorLib)
 sys.path.append(MonoPosixNETStandard)
 
-#clr.AddReference('OpenHardwareMonitorLib')
-clr.AddReference('LibreHardwareMonitorLib')
+clr.AddReference('OpenHardwareMonitorLib')
 clr.AddReference('Mono.Posix.NETStandard')
 
-from LibreHardwareMonitor import Hardware
+from OpenHardwareMonitor import Hardware
 
 computer = Hardware.Computer()
 computer.MainboardEnabled = True
@@ -36,6 +33,7 @@ gpuInformation = []
 diskInformation = []
 
 for hardware in computer.Hardware:
+    print(hardware)
     if hardware.HardwareType ==  2:
         cpuInformation.append(hardware)
     elif hardware.HardwareType == 3:
