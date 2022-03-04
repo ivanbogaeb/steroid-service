@@ -1,23 +1,22 @@
 from flask import jsonify
-import types
 
 def usage(Hardware):
-
     response = []
-
+    sensorsLength = 0
     for drive in Hardware:
         drive.Update()
+        sensorsLength = len(drive.Sensors)
         response.append({
             "name": drive.Name,
             "temperature": drive.Sensors[0].Value,
-            "used": drive.Sensors[1].Value,
+            "used": drive.Sensors[sensorsLength - 5].Value,
             "activity": {
-                "write": drive.Sensors[2].Value,
-                "total": drive.Sensors[3].Value,
+                "write": drive.Sensors[sensorsLength - 4].Value,
+                "total": drive.Sensors[sensorsLength - 3].Value,
             },
             "rates": {
-                "read": drive.Sensors[4].Value,
-                "write": drive.Sensors[5].Value,
+                "read": drive.Sensors[sensorsLength - 2].Value,
+                "write": drive.Sensors[sensorsLength - 1].Value,
             }
         })
 
