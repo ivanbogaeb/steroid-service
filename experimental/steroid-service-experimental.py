@@ -10,37 +10,19 @@ import gpu as gpuModule
 import network as networkModule
 import drive as driveModule
 
-#OpenHardwareMonitorLib =  r""+os.getcwd()+"/OpenHardwareMonitorLib.dll"
-#MonoPosixNETStandard =  r""+os.getcwd()+"/Mono.Posix.NETStandard.dll"
-#HidSharp = r""+os.getcwd()+"/HidSharp.dll"
-
-#sys.path.append(OpenHardwareMonitorLib)
-#sys.path.append(MonoPosixNETStandard)
-#sys.path.append(HidSharp)
-
 clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib.dll")
-#clr.AddReference('OpenHardwareMonitorLib')
-#clr.AddReference('Mono.Posix.NETStandard')
-clr.AddReference(r""+os.getcwd()+"/HidSharp.dll")
 
 from LibreHardwareMonitor import Hardware
-#from OpenHardwareMonitor import Hardware as HardwareOpen
 
 handle = Hardware.Computer()
-#openHardware = HardwareOpen.Computer()
 
 handle.set_IsStorageEnabled(True)
 handle.set_IsNetworkEnabled(True)
 handle.set_IsMemoryEnabled(True)
 handle.set_IsGpuEnabled(True)
 handle.set_IsCpuEnabled(True)
-handle.set_IsControllerEnabled(True)
-handle.set_IsMotherboardEnabled(True)
-
-#openHardware.HDDEnabled = True
 
 handle.Open()
-#openHardware.Open()
 
 networkInformation = [] # In case of multiple connections
 diskInformation = [] # In case of multiple drives
