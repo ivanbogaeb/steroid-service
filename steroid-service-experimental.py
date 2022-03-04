@@ -64,3 +64,11 @@ def filesystem():
 
 if __name__ == '__main__':
     app.run(host="localhost", port=7666, debug=True);
+
+
+
+#################################
+#
+# FIX MEMORY LEAKS!
+#
+#################################

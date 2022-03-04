@@ -1,27 +1,36 @@
-# MINIMAL OUTPUT FOR CPU USAGE
-def minimal(Hardware):
-    Hardware[0].Update() # Update this hardware module
-    cores = 0;
-    for data in Hardware[0].Sensors:
-        if "CPU Core" in data.Name: # If this sensor is named CPU Core
-            cores += 1 # Count one core
-    return {
-        "name": Hardware[0].Name,
-        "usage": Hardware[0].Sensors[cores].Value, # The position of CPU Usage is at the end
-    }
+def usage(Hardware):
+    Hardware.Update()
+    load = []
+    cores = []
+    loadLen = 0
+    temperature = 0
 
-# DETAILED INFORMATION OF CPU USAGE
-def detailed(Hardware):
-    Hardware[0].Update()
-    coresData = [];
-    for data in Hardware[0].Sensors:
-        if "CPU Core" in data.Name:
-            coresData.append({
-                "name": data.Name,
-                "usage": data.Value,
+    for index, Sensor in enumerate(Hardware.Sensors):
+        if Sensor.SensorType == 5:
+            if "Total" not in Sensor.Name:
+                load.append({
+                    "name": Sensor.Name,
+                    "usage": Sensor.Value
+                })
+        elif Sensor.SensorType == 3 and "Core" in Sensor.Name:
+            cores.append({
+                "name": Sensor.Name,
+                "frequency": Sensor.Value,
+                "voltage": Hardware.Sensors[index+3].Value,
+                "power": Hardware.Sensors[index+2].Value,
             })
+        elif Sensor.SensorType == 4:
+            temperature = Sensor.Value
+
+    loadLen = len(load)
+
     return {
-        "name": Hardware[0].Name,
-        "usage": Hardware[0].Sensors[len(coresData)].Value,
-        "cores": coresData,
+        "name": Hardware.Name,
+        "usage": {
+            "total": Hardware.Sensors[loadLen].Value,
+            "threads": load,
+        },
+        "package": Hardware.Sensors[loadLen+1].Value,
+        "cores": cores,
+        "temperature": temperature
     }

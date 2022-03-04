@@ -4,11 +4,11 @@
 block_cipher = None
 
 
-a = Analysis(['steroid-service.py'],
+a = Analysis(['steroid-service-experimental.py'],
              pathex=[],
              binaries=[],
              datas=[],
-             hiddenimports=[],
+             hiddenimports=['cpu', 'gpu', 'ram', 'drive', 'network'],
              hookspath=[],
              hooksconfig={},
              runtime_hooks=[],
@@ -26,7 +26,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,  
           [],
-          name='steroid-service',
+          name='steroid-service-experimental',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

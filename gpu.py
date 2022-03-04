@@ -1,72 +1,100 @@
 from flask import jsonify
 import types
 
+# Don't ask about the overengineered stuff, okay? Leave it there...
+# I need testers to be honest
+
 def usage(Hardware):
     if Hardware is None:
-        return {
-            "error": "Not able to fetch GPU sensors."
-        }
-    elif len(Hardware) > 1:
+        return {"error": "Not able to fetch GPU sensors."}
+    else:
         response = []
         for gpu in Hardware:
-            gpu.Update()
-            response.append(
-                {
-                    "name": gpu.Name,
-                    "core": {
-                        "temperature": gpu.Sensors[0].Value,
-                        "usage": gpu.Sensors[4].Value,
-                        "frequency": gpu.Sensors[1].Value,
-                    },
-                    "memory": {
-                        "usage": gpu.Sensors[10].Value,
-                        "controller": {
-                            "usage": gpu.Sensors[5].Value,
-                        },
-                        "frequency": gpu.Sensors[2].Value,
-                        "total": gpu.Sensors[7].Value, # Outputs in Kb
-                        "used": gpu.Sensors[8].Value,
-                        "free": gpu.Sensors[9].Value,
-                    },
-                    "shader": {
-                        "usage": gpu.Sensors[3].Value,
-                    },
-                    "video": {
-                        "usage": gpu.Sensors[6].Value,
-                    },
-                }
-            )
-            return jsonify(response)
-    
-    else:
-        Hardware[0].Update()
-        for sensor in Hardware[0].Sensors:
-                print(sensor.SensorType, " - ", sensor.Identifier)
-        # gpuData = types.SimpleNamespace()
-        # gpuData.name = Hardware[0].Name,
-        return {
-            "name": Hardware[0].Name,
-            "core": {
-                "temperature": Hardware[0].Sensors[0].Value,
-                "usage": Hardware[0].Sensors[4].Value,
-                "frequency": Hardware[0].Sensors[1].Value,
-            },
-            "memory": {
-            "usage": Hardware[0].Sensors[10].Value,
-            "controller": {
-                    "usage": Hardware[0].Sensors[5].Value,
+            temperature = []
+            clock = []
+            voltage = []
+            load = []
+            power = []
+            transfer = []
+            memory = []
+            gpuData = {
+                "name": "GPU Name",
+                "temperature": {
+                    "core": 0, # AMD  / NVIDIA calls junction
+                    "memory": 0, # AMD
+                    "vddc": 0, # AMD
+                    "mvdd": 0, # AMD
+                    "soc": 0, # AMD
+                    "liquid": 0, # AMD
+                    "plx": 0, # AMD
+                    "hotspot": 0, # AMD / NVIDIA
                 },
-                "frequency": Hardware[0].Sensors[2].Value,
-                "total": Hardware[0].Sensors[7].Value, # Outputs in Kb
-                "used": Hardware[0].Sensors[8].Value,
-                "free": Hardware[0].Sensors[9].Value,
-            },
-            "shader": {
-                "usage": Hardware[0].Sensors[3].Value,
-            },
-            "video": {
-                 "usage": Hardware[0].Sensors[6].Value,
-            }, 
-        }
+                "clock": {
+                    "core": 0, # AMD / NVIDIA
+                    "soc": 0, # AMD
+                    "memory": 0 # AMD / NVIDIA
+                },
+                "voltage": {
+                    "core": 0, # AMD
+                    "soc": 0, # AMD
+                    "memory": 0, # AMD
+                },
+                "load": {
+                    "core": 0, # AMD / NVIDIA / INTEL
+                    "memory": 0, # AMD / NVIDIA
+                    "videoengine": 0, # NVIDIA
+                    "d3d": 0 # NVIDIA
+                },
+                "power": {
+                    "core": 0, # AMD
+                    "ppt": 0, # AMD
+                    "soc": 0, # AMD
+                    "package": 0 # AMD / NVIDIA / INTEL
+                },
+                "transfer": {
+                    "rx": 0, # NVIDIA
+                    "tx": 0, # NVIDIA
+                },
+                "memory": {
+                    "free": 0, # NVIDIA
+                    "used": 0, # NVIDIA / AMD / INTEL
+                    "total": 0, # NVIDIA
+                },
+            }
+            gpu.Update()
+
+            gpuData['name'] = gpu.Name
+
+            if "NVIDIA" in gpu.Name:
+                for sensor in gpu.Sensors:
+                    if sensor.SensorType == 2:
+                        gpuData['power']['package'] = sensor.Value
+                    if sensor.SensorType == 3:
+                        clock.append(sensor)
+                    elif sensor.SensorType == 4:
+                        temperature.append(sensor)
+                    elif sensor.SensorType == 5:
+                        load.append(sensor)
+                    elif sensor.SensorType == 13:
+                        memory.append(sensor)
+                    elif sensor.SensorType == 14:
+                        transfer.append(sensor)
+                    
+                gpuData['clock']['core'] = clock[0].Value
+                gpuData['clock']['memory'] = clock[1].Value
+                gpuData['temperature']['core'] = temperature[0].Value
+                gpuData['temperature']['hotspot'] = temperature[1].Value
+                gpuData['load']['core'] = load[0].Value
+                gpuData['load']['memory'] = load[1].Value
+                gpuData['load']['videoengine'] = load[2].Value
+                gpuData['load']['d3d'] = load[6].Value
+                gpuData['memory']['free'] = memory[1].Value
+                gpuData['memory']['used'] = memory[2].Value
+                gpuData['memory']['total'] = memory[0].Value
+                gpuData['transfer']['rx'] = transfer[0].Value
+                gpuData['transfer']['tx'] = transfer[1].Value
+
+            response.append(gpuData)
+            return jsonify(response)
         
     

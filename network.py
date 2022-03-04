@@ -18,5 +18,5 @@ def usage(Hardware):
                 "uploaded": connection.Sensors[sensorsLength - 5].Value,
             },
         })
-
-    return jsonify(response)
+    data = jsonify(response)
+    return data
