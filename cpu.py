@@ -1,4 +1,4 @@
-def usage(Hardware):
+def usage(Hardware, Type):
     Hardware.Update()
     load = []
     cores = []
@@ -6,20 +6,21 @@ def usage(Hardware):
     temperature = 0
 
     for index, Sensor in enumerate(Hardware.Sensors):
-        if Sensor.SensorType == 5:
+
+        if Sensor.SensorType == Type.Load:
             if "Total" not in Sensor.Name:
                 load.append({
                     "name": Sensor.Name,
                     "usage": Sensor.Value
                 })
-        elif Sensor.SensorType == 3 and "Core" in Sensor.Name:
+        elif Sensor.SensorType == Type.Clock and "Core" in Sensor.Name:
             cores.append({
                 "name": Sensor.Name,
                 "frequency": Sensor.Value,
                 "voltage": Hardware.Sensors[index+3].Value,
                 "power": Hardware.Sensors[index+2].Value,
             })
-        elif Sensor.SensorType == 4:
+        elif Sensor.SensorType == Type.Temperature:
             temperature = Sensor.Value
 
     loadLen = len(load)
