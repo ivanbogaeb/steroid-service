@@ -65,7 +65,6 @@ def usage(Hardware, Type):
             }
             gpu.Update()
             gpuData['name'] = gpu.Name
-
             if gpu.HardwareType == Type.NividaGpu:
                 for sensor in gpu.Sensors:
                     if sensor.SensorType == Type.Power:
@@ -94,7 +93,6 @@ def usage(Hardware, Type):
                 gpuData['memory']['total'] = memory[0].Value
                 gpuData['transfer']['rx'] = transfer[0].Value
                 gpuData['transfer']['tx'] = transfer[1].Value
-
             else gpu.HardwareType == Type.AmdGpu:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
@@ -110,7 +108,6 @@ def usage(Hardware, Type):
                         load.append(sensor)
                     else sensor.SensorType == Type.SmallData:
                         memory.append(sensor)
-                
             else gpu.HardwareType == Type.IntelIntegratedGpu:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
