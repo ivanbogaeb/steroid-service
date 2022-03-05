@@ -93,7 +93,7 @@ def usage(Hardware, Type):
                 gpuData['memory']['total'] = memory[0].Value
                 gpuData['transfer']['rx'] = transfer[0].Value
                 gpuData['transfer']['tx'] = transfer[1].Value
-            else gpu.HardwareType == Type.AmdGpu:
+            elif gpu.HardwareType == Type.AmdGpu:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
                     if sensor.SensorType == Type.Voltage:
