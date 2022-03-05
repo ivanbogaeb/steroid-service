@@ -34,7 +34,7 @@ for hardware in handle.Hardware:
         gpuInformation.append(hardware)
     elif hardware.HardwareType == Hardware.HardwareType.Storage: #Storage only works as Admin
         diskInformation.append(hardware)
-    else hardware.HardwareType == Hardware.HardwareType.Network:
+    elif hardware.HardwareType == Hardware.HardwareType.Network:
         networkInformation.append(hardware)
 
 app = Flask(__name__)

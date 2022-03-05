@@ -20,7 +20,7 @@ def usage(Hardware, Type):
                 "voltage": Hardware.Sensors[index+3].Value,
                 "power": Hardware.Sensors[index+2].Value,
             })
-        else Sensor.SensorType == Type.Temperature:
+        elif Sensor.SensorType == Type.Temperature:
             temperature = Sensor.Value
 
     loadLen = len(load)

@@ -77,7 +77,7 @@ def usage(Hardware, Type):
                         load.append(sensor)
                     elif sensor.SensorType == Type.SmallData:
                         memory.append(sensor)
-                    else sensor.SensorType == Type.Throughput:
+                    elif sensor.SensorType == Type.Throughput:
                         transfer.append(sensor)
                     
                 gpuData['clock']['core'] = clock[0].Value
@@ -106,7 +106,7 @@ def usage(Hardware, Type):
                         temperature.append(sensor)
                     elif sensor.SensorType == Type.Load:
                         load.append(sensor)
-                    else sensor.SensorType == Type.SmallData:
+                    elif sensor.SensorType == Type.SmallData:
                         memory.append(sensor)
             else gpu.HardwareType == Type.IntelIntegratedGpu:
                 for sensor in gpu.Sensors:
@@ -115,7 +115,7 @@ def usage(Hardware, Type):
                         gpuData['power']['package'] = sensor.Value
                     elif sensor.SensorType == Type.Load:
                         gpuData['load']['core'] = sensor.Value
-                    else sensor.SensorType == Type.SmallData:
+                    elif sensor.SensorType == Type.SmallData:
                         gpuData['memory']['used'] = sensor.Value
 
             response.append(gpuData)
