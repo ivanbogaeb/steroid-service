@@ -30,7 +30,7 @@ gpuInformation = [] # In case of multiple GPU
 
 for hardware in handle.Hardware:
     print(hardware.HardwareType, hardware.Name)
-    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareTpe.IntelIntegratedGpu: #GPU Variants
+    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareType.IntelIntegratedGpu: #GPU Variants
         gpuInformation.append(hardware)
     elif hardware.HardwareType == Hardware.HardwareType.Storage: #Storage only works as Admin
         diskInformation.append(hardware)
