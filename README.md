@@ -7,6 +7,7 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 - .NET 4.5
 - Python 3.8 (Above will run with `--pre` version of pythonnet)
 - PIP
+- PyInstaller (Only if you desire to compile it)
 
 #### Installation
 
@@ -18,6 +19,14 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 
 ```shell
     python ./steroid-service.py
+```
+
+> Must run under Root or Admin
+
+#### Compile
+
+```shell
+    pyinstaller steroid-service.spec
 ```
 
 #### References

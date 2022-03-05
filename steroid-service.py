@@ -10,7 +10,7 @@ import gpu as gpuModule
 import network as networkModule
 import drive as driveModule
 
-clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib.dll")
+clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib-custom.dll")
 
 from LibreHardwareMonitor import Hardware
 
@@ -29,11 +29,12 @@ diskInformation = [] # In case of multiple drives
 gpuInformation = [] # In case of multiple GPU
 
 for hardware in handle.Hardware:
-    if hardware.HardwareType == 4: #GPU Variants
+    print(hardware.HardwareType, hardware.Name)
+    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareTpe.IntelIntegratedGpu: #GPU Variants
         gpuInformation.append(hardware)
-    elif hardware.HardwareType == 6: #Storage only works as Admin
+    elif hardware.HardwareType == Hardware.HardwareType.Storage: #Storage only works as Admin
         diskInformation.append(hardware)
-    elif hardware.HardwareType == 7:
+    elif hardware.HardwareType == Hardware.HardwareType.Network:
         networkInformation.append(hardware)
 
 app = Flask(__name__)
@@ -44,7 +45,7 @@ def home():
 
 @app.route('/cpu', methods=['GET'])
 def cpu():
-    return cpuModule.usage(handle.Hardware[0])
+    return cpuModule.usage(handle.Hardware[0], Hardware.SensorType)
 
 @app.route('/ram', methods=['GET'])
 def ram():
@@ -52,7 +53,7 @@ def ram():
 
 @app.route('/gpu', methods=['GET'])
 def gpu():
-    return gpuModule.usage(gpuInformation)
+    return gpuModule.usage(gpuInformation, Hardware.SensorType)
 
 @app.route('/network', methods=['GET'])
 def network():
@@ -64,11 +65,3 @@ def filesystem():
 
 if __name__ == '__main__':
     app.run(host="localhost", port=7666, debug=True);
-
-
-
-#################################
-#
-# FIX MEMORY LEAKS!
-#
-#################################
