@@ -108,7 +108,7 @@ def usage(Hardware, Type):
                         load.append(sensor)
                     elif sensor.SensorType == Type.SmallData:
                         memory.append(sensor)
-            else gpu.HardwareType == Type.IntelIntegratedGpu:
+            elif gpu.HardwareType == Type.IntelIntegratedGpu:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
                     if sensor.SensorType == Type.Power:
