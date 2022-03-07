@@ -29,8 +29,7 @@ diskInformation = [] # In case of multiple drives
 gpuInformation = [] # In case of multiple GPU
 
 for hardware in handle.Hardware:
-    print(hardware.HardwareType, hardware.Name)
-    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareType.IntelIntegratedGpu: #GPU Variants
+    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareType.GpuIntel: #GPU Variants
         gpuInformation.append(hardware)
     elif hardware.HardwareType == Hardware.HardwareType.Storage: #Storage only works as Admin
         diskInformation.append(hardware)
@@ -53,7 +52,7 @@ def ram():
 
 @app.route('/gpu', methods=['GET'])
 def gpu():
-    return gpuModule.usage(gpuInformation, Hardware.SensorType)
+    return gpuModule.usage(gpuInformation, Hardware.HardwareType, Hardware.SensorType)
 
 @app.route('/network', methods=['GET'])
 def network():
