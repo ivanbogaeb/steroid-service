@@ -3,13 +3,12 @@ from flask import jsonify
 # Don't ask about the overengineered stuff, okay? Leave it there...
 # I need testers to be honest
 
-def usage(Hardware, Type):
+def usage(Hardware, HardwareType, SensorType):
     if Hardware is None:
         return {"error": "Not able to fetch GPU sensors."}
     else:
         response = []
         for gpu in Hardware:
-
             voltage = []
             power = []
             clock = []
@@ -65,21 +64,20 @@ def usage(Hardware, Type):
             }
             gpu.Update()
             gpuData['name'] = gpu.Name
-            if gpu.HardwareType == Type.NividaGpu:
+            if gpu.HardwareType == HardwareType.GpuNvidia:
                 for sensor in gpu.Sensors:
-                    if sensor.SensorType == Type.Power:
+                    if sensor.SensorType == SensorType.Power:
                         gpuData['power']['package'] = sensor.Value
-                    elif sensor.SensorType == Type.Clock:
+                    elif sensor.SensorType == SensorType.Clock:
                         clock.append(sensor)
-                    elif sensor.SensorType == Type.Temperature:
+                    elif sensor.SensorType == SensorType.Temperature:
                         temperature.append(sensor)
-                    elif sensor.SensorType == Type.Load:
+                    elif sensor.SensorType == SensorType.Load:
                         load.append(sensor)
-                    elif sensor.SensorType == Type.SmallData:
+                    elif sensor.SensorType == SensorType.SmallData:
                         memory.append(sensor)
-                    elif sensor.SensorType == Type.Throughput:
+                    elif sensor.SensorType == SensorType.Throughput:
                         transfer.append(sensor)
-                    
                 gpuData['clock']['core'] = clock[0].Value
                 gpuData['clock']['memory'] = clock[1].Value
                 gpuData['temperature']['core'] = temperature[0].Value
@@ -93,29 +91,29 @@ def usage(Hardware, Type):
                 gpuData['memory']['total'] = memory[0].Value
                 gpuData['transfer']['rx'] = transfer[0].Value
                 gpuData['transfer']['tx'] = transfer[1].Value
-            elif gpu.HardwareType == Type.AmdGpu:
+            elif gpu.HardwareType == HardwareType.GpuAmd:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
-                    if sensor.SensorType == Type.Voltage:
+                    if sensor.SensorType == SensorType.Voltage:
                         voltage.append(sensor)
-                    elif sensor.SensorType == Type.Power:
+                    elif sensor.SensorType == SensorType.Power:
                         power.append(sensor)
-                    elif sensor.SensorType == Type.Clock:
+                    elif sensor.SensorType == SensorType.Clock:
                         clock.append(sensor)
-                    elif sensor.SensorType == Type.Temperature:
+                    elif sensor.SensorType == SensorType.Temperature:
                         temperature.append(sensor)
-                    elif sensor.SensorType == Type.Load:
+                    elif sensor.SensorType == SensorType.Load:
                         load.append(sensor)
-                    elif sensor.SensorType == Type.SmallData:
+                    elif sensor.SensorType == SensorType.SmallData:
                         memory.append(sensor)
-            elif gpu.HardwareType == Type.IntelIntegratedGpu:
+            elif gpu.HardwareType == HardwareType.GpuIntel:
                 for sensor in gpu.Sensors:
                     print(sensor.SensorType, sensor.Name, sensor.Value)
-                    if sensor.SensorType == Type.Power:
+                    if sensor.SensorType == SensorType.Power:
                         gpuData['power']['package'] = sensor.Value
-                    elif sensor.SensorType == Type.Load:
+                    elif sensor.SensorType == SensorType.Load:
                         gpuData['load']['core'] = sensor.Value
-                    elif sensor.SensorType == Type.SmallData:
+                    elif sensor.SensorType == SensorType.SmallData:
                         gpuData['memory']['used'] = sensor.Value
 
             response.append(gpuData)
