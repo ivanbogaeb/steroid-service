@@ -10,7 +10,7 @@ import gpu as gpuModule
 import network as networkModule
 import drive as driveModule
 
-clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib-custom.dll")
+clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib.dll")
 
 from LibreHardwareMonitor import Hardware
 
