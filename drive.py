@@ -1,6 +1,6 @@
 from flask import jsonify
 
-def usage(Hardware, Type):
+def usage(Hardware):
     response = []
     sensorsLength = 0
     for drive in Hardware:

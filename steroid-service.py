@@ -40,13 +40,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "Use path: /cpu, /gpu, /ram, /network, /filesystem"
+    return "Use path: /cpu, /gpu, /memory, /network, /filesystem"
 
 @app.route('/cpu', methods=['GET'])
 def cpu():
     return cpuModule.usage(handle.Hardware[0], Hardware.SensorType)
 
-@app.route('/ram', methods=['GET'])
+@app.route('/memory', methods=['GET'])
 def ram():
     return ramModule.usage(handle.Hardware[1])
 
