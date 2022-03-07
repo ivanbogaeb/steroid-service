@@ -112,9 +112,12 @@ def usage(Hardware, HardwareType, SensorType):
                     if sensor.SensorType == SensorType.Power:
                         gpuData['power']['package'] = sensor.Value
                     elif sensor.SensorType == SensorType.Load:
-                        gpuData['load']['core'] = sensor.Value
+                        load.append(sensor)
                     elif sensor.SensorType == SensorType.SmallData:
                         gpuData['memory']['used'] = sensor.Value
+
+                gpuData['load']['d3d'] = load[0].Value
+                gpuData['load']['videoengine'] = load[3].Value
 
             response.append(gpuData)
             return jsonify(response)
