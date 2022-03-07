@@ -1,1 +1,3 @@
-# TESTING BRANCH! CHANGES ARE PUSHED HERE AND MERGED INTO MAIN ONCE STABLE
+## TESTING BRANCH
+
+Changes are pushed here and merged into main once stable.
