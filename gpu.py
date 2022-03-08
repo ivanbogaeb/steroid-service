@@ -4,10 +4,10 @@ from flask import jsonify
 # I need testers to be honest
 
 def usage(Hardware, HardwareType, SensorType):
+    response = []
     if Hardware is None:
-        return {"error": "Not able to fetch GPU sensors."}
+        response.append({"error": "Not able to fetch GPU sensors."})
     else:
-        response = []
         for gpu in Hardware:
             voltage = []
             power = []
@@ -16,7 +16,6 @@ def usage(Hardware, HardwareType, SensorType):
             load = []
             memory = []
             transfer = []
-
             gpuData = {
                 "name": "GPU Name",
                 "voltage": {
@@ -115,11 +114,11 @@ def usage(Hardware, HardwareType, SensorType):
                         load.append(sensor)
                     elif sensor.SensorType == SensorType.SmallData:
                         gpuData['memory']['used'] = sensor.Value
-
                 gpuData['load']['d3d'] = load[0].Value
                 gpuData['load']['videoengine'] = load[3].Value
 
             response.append(gpuData)
-            return jsonify(response)
+
+    return jsonify(response)
         
     
