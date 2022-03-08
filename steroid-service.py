@@ -1,8 +1,6 @@
 import os
-import sys
 import clr
 from flask import Flask, request
-import inspect
 
 import cpu as cpuModule
 import ram as ramModule
@@ -10,7 +8,9 @@ import gpu as gpuModule
 import network as networkModule
 import drive as driveModule
 
-clr.AddReference(r""+os.getcwd()+"\\LibreHardwareMonitorLib.dll")
+directory_path = os.getcwd()
+
+clr.AddReference(directory_path+"\\LibreHardwareMonitorLib.dll")
 
 from LibreHardwareMonitor import Hardware
 
