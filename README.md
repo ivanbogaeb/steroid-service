@@ -92,4 +92,4 @@ LibreHardwareMonitor sets it's own unique interface, and every hardware has it's
 
 #### Credits
 
-Brought to you thanks to [flask](https://github.com/pallets/flask), [pythonnet](http://pythonnet.github.io/), [pyinstaller](https://github.com/pyinstaller/pyinstaller) and [LibreHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor) libraries.
+Brought to you thanks to [flask](https://github.com/pallets/flask), [pythonnet](http://pythonnet.github.io/), [pyinstaller](https://github.com/pyinstaller/pyinstaller) and [LibreHardwareMonitor](https://github.com/librehardwaremonitor/librehardwaremonitor) libraries.
