@@ -1,7 +1,7 @@
 from flask import jsonify
 
 def usage(Hardware):
-    response = []
+    response = [0]
     sensorsLength = 0
     for drive in Hardware:
         drive.Update()
@@ -19,5 +19,7 @@ def usage(Hardware):
                 "write": drive.Sensors[sensorsLength - 1].Value,
             }
         })
+
+    response.pop(0)
 
     return jsonify(response)

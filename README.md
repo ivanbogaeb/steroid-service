@@ -1,13 +1,12 @@
 ## Steroid Service
 
-Hardware  monitor web application made for [Steroid](https://steroid-app.github.io), providing real time usage metrics from your PC to your wallpaper, powered by [pyhardmon](https://github.com/ivanbogaeb/pyhardmon).
+Hardware  monitor web application made for [Steroid](https://steroid-app.github.io), providing real time usage metrics from your PC to your wallpaper.
 
 #### Requirements
 
-- .NET 4.5
-- Python 3.8 (Above will run with `--pre` version of pythonnet)
+- .NET 4.7.X (Latest if possible)
+- Python 3.8.X (Above will run with `--pre` version of pythonnet)
 - PIP
-- PyInstaller (Only if you desire to compile it)
 
 #### Installation
 
@@ -26,7 +25,7 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 #### Compile
 
 ```shell
-    pyinstaller steroid-service.spec
+    pyinstaller steroid-service.spec --collect-data pythonnet
 ```
 
 #### References
@@ -43,7 +42,7 @@ Steroid service works as an internal web API hosted on **http://localhost:7666**
 
 > This service application can run both UAC enabled or disabled.
 
-> GPU and FileSystem are **UNFINISHED**.
+> GPU is **UNFISHED** and needs AMD testers to provide console output.
 
 
 #### Development Notes
@@ -93,4 +92,4 @@ LibreHardwareMonitor sets it's own unique interface, and every hardware has it's
 
 #### Credits
 
-Brought to you thanks to [pythonnet](http://pythonnet.github.io/), [OpenHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor) and [LibreHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor) libraries.
+Brought to you thanks to [flask](https://github.com/pallets/flask), [pythonnet](http://pythonnet.github.io/), [pyinstaller](https://github.com/pyinstaller/pyinstaller) and [LibreHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor) libraries.

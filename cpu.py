@@ -1,7 +1,8 @@
 def usage(Hardware, Type):
     Hardware.Update()
-    load = []
-    cores = []
+
+    load = [0]
+    cores = [0]
     loadLen = 0
     temperature = 0
 
@@ -22,6 +23,9 @@ def usage(Hardware, Type):
             })
         elif Sensor.SensorType == Type.Temperature:
             temperature = Sensor.Value
+
+    load.pop(0)
+    cores.pop(0)
 
     loadLen = len(load)
 

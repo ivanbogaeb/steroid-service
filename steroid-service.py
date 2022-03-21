@@ -1,42 +1,54 @@
 import os
 import clr
+import logging
+import multiprocessing
 from flask import Flask, request
 
 import cpu as cpuModule
 import ram as ramModule
 import gpu as gpuModule
-import network as networkModule
 import drive as driveModule
+import network as networkModule
 
 directory_path = os.getcwd()
 
 clr.AddReference(directory_path+"\\LibreHardwareMonitorLib.dll")
-
 from LibreHardwareMonitor import Hardware
-
 handle = Hardware.Computer()
-
 handle.set_IsStorageEnabled(True)
 handle.set_IsNetworkEnabled(True)
 handle.set_IsMemoryEnabled(True)
 handle.set_IsGpuEnabled(True)
 handle.set_IsCpuEnabled(True)
-
 handle.Open()
 
-networkInformation = [] # In case of multiple connections
-diskInformation = [] # In case of multiple drives
-gpuInformation = [] # In case of multiple GPU
+networkInformation = [0] # In case of multiple connections, initialized to prevent memory leaks
+diskInformation = [0] # In case of multiple drives, initialized to prevent memory leaks
+gpuInformation = [0] # In case of multiple GPU, initialized to prevent memory leaks
 
 for hardware in handle.Hardware:
-    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareType.GpuIntel: #GPU Variants
+    if hardware.HardwareType == Hardware.HardwareType.GpuNvidia or hardware.HardwareType == Hardware.HardwareType.GpuAmd or hardware.HardwareType == Hardware.HardwareType.GpuIntel:
         gpuInformation.append(hardware)
-    elif hardware.HardwareType == Hardware.HardwareType.Storage: #Storage only works as Admin
+    elif hardware.HardwareType == Hardware.HardwareType.Storage:
         diskInformation.append(hardware)
     elif hardware.HardwareType == Hardware.HardwareType.Network:
         networkInformation.append(hardware)
 
+networkInformation.pop(0) # Removing empty slot
+diskInformation.pop(0) # Removing empty slot
+gpuInformation.pop(0) # Removing empty slot
+
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.disabled = True
+app.logger.disabled = True
+
+@app.after_request
+def after_request(response):
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    response.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+    return response
 
 @app.route('/', methods=['GET'])
 def home():
@@ -62,5 +74,13 @@ def network():
 def filesystem():
     return driveModule.usage(diskInformation)
 
+@app.route('/clear', methods=['GET'])
+def clear():
+    handle.Close()
+    handle.Open()
+    return "Resetting hardware..."
+
+
 if __name__ == '__main__':
-    app.run(host="localhost", port=7666, debug=True);
+    multiprocessing.freeze_support()
+    app.run(host="localhost", port=7666, debug=False);
