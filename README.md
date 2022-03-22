@@ -2,19 +2,19 @@
 
 Hardware  monitor web application made for [Steroid](https://steroid-app.github.io), providing real time usage metrics from your PC to your wallpaper.
 
-#### Requirements
+### Requirements
 
 - .NET 4.7.X (Latest if possible)
 - Python 3.8.X (Above will run with `--pre` version of pythonnet)
 - PIP
 
-#### Installation
+### Installation
 
 ```shell
     pip install -r requirements.txt
 ```
 
-#### How to run
+### How to run
 
 If not built with PyInstaller:
 ```shell
@@ -26,13 +26,13 @@ If built or downloaded the latest release:
 ```
 > Must run under Root or Admin
 
-#### Compile
+### Compile
 
 ```shell
     pyinstaller steroid-service.spec --collect-data pythonnet
 ```
 
-#### References
+### References
 
 Steroid service works as an internal web API hosted on **http://localhost:7666**, waiting for a **GET method** on these paths:
 
@@ -49,7 +49,7 @@ Steroid service works as an internal web API hosted on **http://localhost:7666**
 > GPU is **UNFISHED** and needs AMD testers to provide console output.
 
 
-#### Development Notes
+### Development Notes
 LibreHardwareMonitor sets it's own unique interface, and every hardware has it's own `HardwareType` and `Name`:
 
 **Hardware**:
@@ -94,6 +94,6 @@ LibreHardwareMonitor sets it's own unique interface, and every hardware has it's
 
 > **User/Admin** privileges means it is only available for Users under determined conditions, like the GPU.
 
-#### Credits
+### Credits
 
 Brought to you thanks to [flask](https://github.com/pallets/flask), [pythonnet](http://pythonnet.github.io/), [pyinstaller](https://github.com/pyinstaller/pyinstaller) and [LibreHardwareMonitor](https://github.com/librehardwaremonitor/librehardwaremonitor) libraries.
