@@ -30,6 +30,8 @@ gpuData = {
         "core": 0, # AMD / NVIDIA / INTEL
         "memory": 0, # AMD / NVIDIA
         "videoengine": 0, # NVIDIA
+        "videoencode": 0, # AMD / NVIDIA
+        "videodecode": 0 # AMD / NVIDIA
         "d3d": 0 # NVIDIA
     },
     "memory": {
@@ -47,8 +49,6 @@ def usage(Hardware, HardwareType, SensorType):
         return {"error": "Not able to fetch GPU sensors."}
     else:
         for gpu in Hardware:
-            voltage = [0]
-            power = [0]
             clock = [0]
             temperature = [0]
             load = [0]
@@ -59,7 +59,6 @@ def usage(Hardware, HardwareType, SensorType):
 
             if gpu.HardwareType == HardwareType.GpuNvidia:
                 for sensor in gpu.Sensors:
-                    print(sensor.SensorType, sensor.Name, sensor.Value)
                     if sensor.SensorType == SensorType.Power:
                         gpuData['power']['package'] = sensor.Value
                     elif sensor.SensorType == SensorType.Clock:
@@ -87,6 +86,8 @@ def usage(Hardware, HardwareType, SensorType):
                 gpuData['load']['memory'] = load[1].Value
                 gpuData['load']['videoengine'] = load[2].Value
                 gpuData['load']['d3d'] = load[6].Value
+                gpuData['load']['decode'] = load[9].Value
+                gpuData['load']['encode'] = load[13].Value
                 gpuData['memory']['free'] = memory[1].Value
                 gpuData['memory']['used'] = memory[2].Value
                 gpuData['memory']['total'] = memory[0].Value
@@ -95,20 +96,36 @@ def usage(Hardware, HardwareType, SensorType):
 
             elif gpu.HardwareType == HardwareType.GpuAmd:
                 for sensor in gpu.Sensors:
-                    print(sensor.SensorType, sensor.Name, sensor.Value)
-                    if sensor.SensorType == SensorType.Voltage:
-                        voltage.append(sensor)
-                    elif sensor.SensorType == SensorType.Power:
-                        power.append(sensor)
+                    if sensor.SensorType == SensorType.Power:
+                        gpuData['power']['package'] = sensor.Value
                     elif sensor.SensorType == SensorType.Clock:
                         clock.append(sensor)
                     elif sensor.SensorType == SensorType.Temperature:
-                        temperature.append(sensor)
+                        gpuData['temperature']['core'] = sensor.Value
                     elif sensor.SensorType == SensorType.Load:
                         load.append(sensor)
                     elif sensor.SensorType == SensorType.SmallData:
                         memory.append(sensor)
-                    
+
+                temperature.pop(0)
+                load.pop(0)
+                memory.pop(0)
+                transfer.pop(0)
+
+                gpuData['memory']['used'] = memory[0].Value
+                gpuData['load']['d3d'] = load[0].Value
+                if clock[0] != 0: # Not integrated
+                    gpuData['clock']['core'] = clock[0].Value
+                    gpuData['clock']['memory'] = clock[1].Value
+                    gpuData['load']['decode'] = load[11].Value
+                    gpuData['load']['encode'] = load[14].Value
+                    gpuData['load']['core'] = load[load.len()].Value
+                else: # Integrated
+                    gpuData['load']['decode'] = load[6].Value
+                    gpuData['load']['encode'] = load[8].Value
+
+                clock.pop(0)
+
             elif gpu.HardwareType == HardwareType.GpuIntel:
                 for sensor in gpu.Sensors:
                     if sensor.SensorType == SensorType.Power:
