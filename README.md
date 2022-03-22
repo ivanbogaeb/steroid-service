@@ -15,17 +15,20 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 ```
 
 ### How to run:
+> Must run under Root/Administrator/System.
 
 If not built with PyInstaller
 ```shell
     python ./steroid-service.py
 ```
 
-If built or downloaded the latest release
+If built or downloaded the latest release, `you must open a terminal as Administrator in the steroid folder`, and then:
 ```shell
-    Right Click -> Run as Administrator -> Enjoy / Close it from your Task Manager.
+    cd dist/steroid-service
+    start steroid-service.exe
 ```
-> Must run under Root or Admin
+
+> CTRL + C to exit.
 
 ### Compile:
 
