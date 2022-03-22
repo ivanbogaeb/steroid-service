@@ -4,8 +4,8 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 
 ### Requirements:
 
-- .NET 4.7.X (Latest if possible)
-- Python 3.8.X (Above will run with `--pre` version of pythonnet but might cause memory leaks)
+- .NET 4.7.X _(Latest if possible)_
+- Python 3.8.X _(Above will run with `--pre` version of pythonnet but might cause memory leaks)_
 - PIP
 
 ### Installation:
