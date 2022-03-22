@@ -1,6 +1,6 @@
 ## Steroid Service
 
-Hardware  monitor web application made for [Steroid](https://steroid-app.github.io), providing real time usage metrics from your PC to your wallpaper.
+Hardware  monitor web application made for **[Steroid](https://steroid-app.github.io)**, providing real time usage metrics from your PC to your wallpaper.
 
 ### Requirements:
 
@@ -100,4 +100,4 @@ LibreHardwareMonitor sets it's own unique interface, and every hardware has it's
 
 ### Credits:
 
-Brought to you thanks to [flask](https://github.com/pallets/flask), [pythonnet](http://pythonnet.github.io/), [pyinstaller](https://github.com/pyinstaller/pyinstaller) and [LibreHardwareMonitor](https://github.com/librehardwaremonitor/librehardwaremonitor) libraries.
+Brought to you thanks to **[flask](https://github.com/pallets/flask)**, **[pythonnet](http://pythonnet.github.io/)**, **[pyinstaller](https://github.com/pyinstaller/pyinstaller)** and **[LibreHardwareMonitor](https://github.com/librehardwaremonitor/librehardwaremonitor)** libraries.
