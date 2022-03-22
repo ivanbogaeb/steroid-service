@@ -16,10 +16,14 @@ Hardware  monitor web application made for [Steroid](https://steroid-app.github.
 
 #### How to run
 
+If not built with PyInstaller:
 ```shell
     python ./steroid-service.py
 ```
-
+If built or downloaded the latest release:
+```shell
+    Right Click -> Run as Administrator -> Enjoy / Close it from your Task Manager.
+```
 > Must run under Root or Admin
 
 #### Compile
