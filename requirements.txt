@@ -1,4 +1,3 @@
 flask
 pythonnet
 pyinstaller
-multiprocessing
