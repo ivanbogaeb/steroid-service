@@ -2,6 +2,15 @@
 
 Hardware  monitor web application made for **[Steroid](https://steroid-app.github.io)**, providing real time usage metrics from your PC to your wallpaper.
 
+
+### Features:
+
+- CPU metrics and information.
+- GPU details `_(Including Intel Integrated Graphics)_`.
+- Memory usage.
+- Network names and usage.
+- Hard Drives information and usage.
+
 ### Requirements:
 
 - .NET 4.7.X _(Latest if possible)_
@@ -97,6 +106,10 @@ LibreHardwareMonitor sets it's own unique interface, and every hardware has it's
 |<center>16</center>|<center>Energy</center>|<center>mWh</center>|<center>Admin</center>|
 
 > **User/Admin** privileges means it is only available for Users under determined conditions, like the GPU.
+
+**Why not adding all the other features that LibreHardwareMonitor has?**
+
+Some features are too unstable or are not worth the effort, mostly considering that this is just a metrics provider and not ideal or suited for like, for example, fans frequency of the motherboard or PSU information provided by just a few power supplies.
 
 ### Credits:
 
