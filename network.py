@@ -1,7 +1,7 @@
 from flask import jsonify
 
 def usage(Hardware):
-    response = []
+    response = [0]
     sensorsLength = 0
     for connection in Hardware:
         sensorsLength = len(connection.Sensors)
@@ -18,5 +18,5 @@ def usage(Hardware):
                 "uploaded": connection.Sensors[sensorsLength - 5].Value,
             },
         })
-    data = jsonify(response)
-    return data
+    response.pop()
+    return jsonify(response)
