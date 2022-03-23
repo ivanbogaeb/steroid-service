@@ -18,5 +18,7 @@ def usage(Hardware):
                 "uploaded": connection.Sensors[sensorsLength - 5].Value,
             },
         })
-    response.pop()
+
+    response.pop(0)
+    
     return jsonify(response)
