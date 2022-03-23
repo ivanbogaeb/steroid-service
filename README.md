@@ -6,7 +6,7 @@ Hardware  monitor web application made for **[Steroid](https://steroid-app.githu
 ### Features:
 
 - CPU metrics and information.
-- GPU details `_(Including Intel Integrated Graphics)_`.
+- GPU details _`(Including Intel Integrated Graphics)`_.
 - Memory usage.
 - Network names and usage.
 - Hard Drives information and usage.
