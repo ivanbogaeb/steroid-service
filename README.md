@@ -120,4 +120,4 @@ Brought to you thanks to **[flask](https://github.com/pallets/flask)**, **[pytho
 - **[Anon4l](https://github.com/Anon4l)**
 - **[NitWitted](https://github.com/NitWitted)**
 
-You guys rock, and thank you reader for coming 🔥
+You guys rock, and thank you reader for coming here 🔥
