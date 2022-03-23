@@ -114,3 +114,10 @@ Some features are too unstable or are not worth the effort, mostly considering t
 ### Credits:
 
 Brought to you thanks to **[flask](https://github.com/pallets/flask)**, **[pythonnet](http://pythonnet.github.io/)**, **[pyinstaller](https://github.com/pyinstaller/pyinstaller)** and **[LibreHardwareMonitor](https://github.com/librehardwaremonitor/librehardwaremonitor)** libraries.
+
+### Special thanks to:
+- **[Froeno](https://github.com/Froeno)**
+- **[Anon4l](https://github.com/Anon4l)**
+- **[NitWitted](https://github.com/NitWitted)**
+
+You guys rock!
