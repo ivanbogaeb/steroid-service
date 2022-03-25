@@ -31,8 +31,8 @@ gpuData = {
         "memory": 0, # AMD / NVIDIA
         "videoengine": 0, # NVIDIA
         "videoencode": 0, # AMD / NVIDIA
-        "videodecode": 0 # AMD / NVIDIA
-        "d3d": 0 # NVIDIA
+        "videodecode": 0, # AMD / NVIDIA
+        "d3d": 0, # NVIDIA
     },
     "memory": {
         "free": 0, # NVIDIA
