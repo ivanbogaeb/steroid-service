@@ -1,16 +1,19 @@
 import os
 import clr
+import sys
+import json
 import logging
 import multiprocessing
-from flask import Flask, request
-
-import cpu as cpuModule
-import ram as ramModule
-import gpu as gpuModule
-import drive as driveModule
-import network as networkModule
+from flask import Flask
 
 directory_path = os.getcwd()
+sys.path.insert(0, directory_path+"\\modules")
+
+import cpu
+import gpu
+import memory
+import network
+import filesystem
 
 clr.AddReference(directory_path+"\\LibreHardwareMonitorLib.dll")
 from LibreHardwareMonitor import Hardware
@@ -55,24 +58,24 @@ def home():
     return "Use path: /cpu, /gpu, /memory, /network, /filesystem"
 
 @app.route('/cpu', methods=['GET'])
-def cpu():
-    return cpuModule.usage(handle.Hardware[0], Hardware.SensorType)
-
-@app.route('/memory', methods=['GET'])
-def ram():
-    return ramModule.usage(handle.Hardware[1])
+def cpuRoute():
+    return json.dumps(cpu.usage(handle.Hardware[0], Hardware.SensorType))
 
 @app.route('/gpu', methods=['GET'])
-def gpu():
-    return gpuModule.usage(gpuInformation, Hardware.HardwareType, Hardware.SensorType)
+def gpuRoute():
+    return json.dumps(gpu.usage(gpuInformation, Hardware.HardwareType, Hardware.SensorType))
+
+@app.route('/memory', methods=['GET'])
+def memoryRoute():
+    return json.dumps(memory.usage(handle.Hardware[1]))
 
 @app.route('/network', methods=['GET'])
-def network():
-    return networkModule.usage(networkInformation)
+def networkRoute():
+    return json.dumps(network.usage(networkInformation))
 
 @app.route('/filesystem', methods=['GET'])
-def filesystem():
-    return driveModule.usage(diskInformation)
+def filesystemRoute():
+    return filesystem.usage(diskInformation)
 
 @app.route('/clear', methods=['GET'])
 def clear():
@@ -80,7 +83,6 @@ def clear():
     handle.Open()
     return "Resetting hardware..."
 
-
 if __name__ == '__main__':
     multiprocessing.freeze_support()
-    app.run(host="localhost", port=7666, debug=False);
+    app.run(debug=False, host="localhost", port=7666);

@@ -1,5 +1,3 @@
-from flask import jsonify
-
 def usage(Hardware):
     response = [0]
     sensorsLength = 0
@@ -21,4 +19,4 @@ def usage(Hardware):
 
     response.pop(0)
     
-    return jsonify(response)
+    return response
